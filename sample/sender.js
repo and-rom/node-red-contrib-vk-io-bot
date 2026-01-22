@@ -10,28 +10,61 @@ module.exports = function (RED) {
       apiVersion: this.config.apiVersion
     });
 
-    this.on('input', function (msg) {
+    this.on('input', async function (msg) {
         var peer_id = config.peer_id || msg.payload.peer_id;
         var text = config.text || msg.payload.text;
         var random_id = Date.now();
 
-      vk.api.messages.send({
-        peer_id: peer_id,
-        message: text,
-        random_id: random_id,
-        ...msg.payload
-        // Другие параметры сообщения, если нужно
-      })
-        .then((res) => {
-          node.status({ fill: 'green', shape: 'dot', text: 'Message sent' });
-          node.send({
-            payload:{message_id:res}
-          });
-        })
-        .catch((error) => {
-          node.status({ fill: 'red', shape: 'ring', text: 'Failed to send message' });
-          node.error('Failed to send message: '+ error.toString());
-        });
+        if (msg.messagePhoto) {
+            if (!Array.isArray(msg.messagePhoto)) msg.messagePhoto = [msg.messagePhoto]
+
+            const attachments = await Promise.all(
+              msg.messagePhoto.map(i =>
+                vk.upload.messagePhoto({
+                  source: {
+                    value: i
+                  }
+                })
+              )
+            );
+
+            await vk.api.messages.send({
+                  peer_id: peer_id,
+                  attachment: attachments,
+                  message: text,
+                  random_id: random_id,
+            })
+            .then((res) => {
+                node.status({ fill: 'green', shape: 'dot', text: 'Message sent' });
+                node.send({
+                    payload:{message_id:res}
+                });
+            })
+            .catch((error) => {
+                node.status({ fill: 'red', shape: 'ring', text: 'Failed to send message' });
+                node.error('Failed to send message: '+ error.toString());
+            });
+
+
+        } else {
+            vk.api.messages.send({
+              peer_id: peer_id,
+              message: text,
+              random_id: random_id,
+              ...msg.payload
+              // Другие параметры сообщения, если нужно
+            })
+            .then((res) => {
+                node.status({ fill: 'green', shape: 'dot', text: 'Message sent' });
+                node.send({
+                    payload:{message_id:res}
+                });
+            })
+            .catch((error) => {
+                node.status({ fill: 'red', shape: 'ring', text: 'Failed to send message' });
+                node.error('Failed to send message: '+ error.toString());
+            });
+        }
     });
 
     node.on('close', function () {
