@@ -1,7 +1,7 @@
 const { VK } = require('vk-io');
 
 module.exports = function (RED) {
-    function CommandNode(config) {
+    function VkCommandNode(config) {
         RED.nodes.createNode(this, config);
         this.config = RED.nodes.getNode(config.config);
         var node = this;
@@ -54,5 +54,5 @@ module.exports = function (RED) {
             vk.updates.stop();
         });
     }
-    RED.nodes.registerType('command', CommandNode);
+    RED.nodes.registerType('vk-command', VkCommandNode);
 };

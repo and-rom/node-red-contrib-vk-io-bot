@@ -16,13 +16,13 @@
   "node-red": {
     "nodes": {
       "vk-config": "sample/vk-config.js",
-      "recipient": "sample/recipient.js",
-      "sender":"sample/sender.js",
-      "event":"sample/event.js",
-      "keyboard":"sample/keyboard.js",
-      "command":"sample/command.js",
-      "callback-event":"sample/callback-event.js",
-      "method":"sample/method.js"
+      "vk-recipient": "sample/recipient.js",
+      "vk-sender":"sample/sender.js",
+      "vk-event":"sample/event.js",
+      "vk-keyboard":"sample/keyboard.js",
+      "vk-command":"sample/command.js",
+      "vk-callback-event":"sample/callback-event.js",
+      "vk-method":"sample/method.js"
     }
   },
   "dependencies": {

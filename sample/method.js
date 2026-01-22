@@ -35,5 +35,5 @@ module.exports = function(RED) {
     });
   }
 
-  RED.nodes.registerType('method', VkMethodNode);
+  RED.nodes.registerType('vk-method', VkMethodNode);
 };

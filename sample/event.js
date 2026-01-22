@@ -2,7 +2,7 @@ const { VK } = require('vk-io');
 
 // event.js
 module.exports = function (RED) {
-    function EventNode(config) {
+    function VkEventNode(config) {
       RED.nodes.createNode(this, config);
       this.config = RED.nodes.getNode(config.config);
       var node = this;
@@ -38,6 +38,6 @@ module.exports = function (RED) {
       });
     }
   
-    RED.nodes.registerType('event', EventNode);
+    RED.nodes.registerType('vk-event', VkEventNode);
   };
   

@@ -1,7 +1,7 @@
 const { VK } = require('vk-io');
 
 module.exports = function (RED) {
-    function CallbackEventNode(config) {
+    function VkCallbackEventNode(config) {
         RED.nodes.createNode(this, config);
         this.config = RED.nodes.getNode(config.config);
         const node = this;
@@ -57,5 +57,5 @@ module.exports = function (RED) {
         });
     }
 
-    RED.nodes.registerType('callback-event', CallbackEventNode);
+    RED.nodes.registerType('vk-callback-event', VkCallbackEventNode);
 };

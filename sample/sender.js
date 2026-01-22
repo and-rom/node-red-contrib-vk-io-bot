@@ -1,7 +1,7 @@
 const { VK } = require('vk-io');
 
 module.exports = function (RED) {
-  function SenderNode(config) {
+  function VkSenderNode(config) {
     RED.nodes.createNode(this, config);
     this.config = RED.nodes.getNode(config.config);
     var node = this;
@@ -39,5 +39,5 @@ module.exports = function (RED) {
     });
   }
 
-  RED.nodes.registerType('sender', SenderNode);
+  RED.nodes.registerType('vk-sender', VkSenderNode);
 };

@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-    function KeyboardNode(config) {
+    function VkKeyboardNode(config) {
       RED.nodes.createNode(this, config);
       this.name = config.name;
       this.keyboard = config.keyboard;
@@ -22,6 +22,6 @@ module.exports = function (RED) {
       });
     }
   
-    RED.nodes.registerType('keyboard', KeyboardNode);
+    RED.nodes.registerType('vk-keyboard', VkKeyboardNode);
   };
   
