@@ -1,6 +1,6 @@
 {
-  "name": "node-red-contrib-vk-io-bot",
-  "version": "0.0.4",
+  "name": "@and-rom/node-red-contrib-vk-io-bot",
+  "version": "0.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,14 +15,14 @@
   "license": "MIT",
   "node-red": {
     "nodes": {
-      "vk-config": "sample/vk-config.js",
-      "vk-recipient": "sample/recipient.js",
-      "vk-sender":"sample/sender.js",
-      "vk-event":"sample/event.js",
-      "vk-keyboard":"sample/keyboard.js",
-      "vk-command":"sample/command.js",
-      "vk-callback-event":"sample/callback-event.js",
-      "vk-method":"sample/method.js"
+      "vk-config": "nodes/vk-config.js",
+      "vk-recipient": "nodes/recipient.js",
+      "vk-sender":"nodes/sender.js",
+      "vk-event":"nodes/event.js",
+      "vk-keyboard":"nodes/keyboard.js",
+      "vk-command":"nodes/command.js",
+      "vk-callback-event":"nodes/callback-event.js",
+      "vk-method":"nodes/method.js"
     }
   },
   "dependencies": {
