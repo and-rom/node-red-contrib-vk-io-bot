@@ -22,39 +22,39 @@
         $('#node-input-method').val(node.method);
         $('#node-input-params').val(node.params);
         $('#node-input-config').val(node.config);
-  
+
         var params = JSON.parse(node.params) || {};
-  
+
         for (var key in params) {
           if (params.hasOwnProperty(key)) {
             addParamField(key, params[key]);
           }
         }
-  
+
         $('#add-param').click(function() {
           addParamField('', '');
           saveNode();
         });
-  
+
         function addParamField(key, value) {
           var row = $('<div class="param-row" style="display: flex; margin-bottom: 5px;"></div>');
           var keyInput = $('<input type="text" class="param-key" placeholder="Key" style="width: 50%;">').val(key);
           var valueInput = $('<input type="text" class="param-value" placeholder="Value" style="width: 50%;">').val(value);
           var removeButton = $('<button type="button" class="param-remove">Remove</button>');
-  
+
           keyInput.on('input', saveNode);
           valueInput.on('input', saveNode);
-  
+
           removeButton.click(function() {
             row.remove();
             saveNode();
           });
-  
+
           row.append(keyInput).append(valueInput).append(removeButton);
           $('#param-container').append(row);
           saveNode(); // Обновление при добавлении нового поля
         }
-  
+
         function saveNode() {
           var params = {};
           $('#param-container .param-row').each(function() {
@@ -81,7 +81,7 @@
         this.name = $('#node-input-name').val().trim();
         this.config = $('#node-input-config').val().trim();
         this.method = $('#node-input-method').val().trim();
-  
+
         var params = {};
         $('#param-container .param-row').each(function() {
           var key = $(this).find('.param-key').val().trim();
@@ -95,7 +95,7 @@
       }
     });
   </script>
-  
+
   <script type="text/html" data-template-name="vk-method">
     <div class="form-row">
       <label for="node-input-name">
@@ -103,21 +103,21 @@
       </label>
       <input type="text" id="node-input-name" placeholder="Имя">
     </div>
-  
+
     <div class="form-row">
       <label for="node-input-config">
         <i class="fa fa-cog"></i> Конфигурация
       </label>
       <input id="node-input-config" required>
     </div>
-  
+
     <div class="form-row">
       <label for="node-input-method">
         <i class="fa fa-wrench"></i> Метод
       </label>
       <input type="text" id="node-input-method" placeholder="messages.send">
     </div>
-  
+
     <div class="form-row">
       <label for="node-input-params">
         <i class="fa fa-cog"></i> Параметры
@@ -127,8 +127,7 @@
       <button type="button" id="add-param">Добавить параметр</button>
     </div>
   </script>
-  
+
   <script type="text/html" data-help-name="vk-method">
     <a href="https://dev.vk.com/method">https://dev.vk.com/method</a>
   </script>
-  
