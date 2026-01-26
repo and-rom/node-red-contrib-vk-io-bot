@@ -1,6 +1,6 @@
 {
   "name": "@and-rom/node-red-contrib-vk-io-bot",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,12 +17,12 @@
     "nodes": {
       "vk-config": "nodes/vk-config.js",
       "vk-recipient": "nodes/recipient.js",
-      "vk-sender":"nodes/sender.js",
-      "vk-event":"nodes/event.js",
-      "vk-keyboard":"nodes/keyboard.js",
-      "vk-command":"nodes/command.js",
-      "vk-callback-event":"nodes/callback-event.js",
-      "vk-method":"nodes/method.js"
+      "vk-sender": "nodes/sender.js",
+      "vk-event": "nodes/event.js",
+      "vk-keyboard": "nodes/keyboard.js",
+      "vk-command": "nodes/command.js",
+      "vk-callback-event": "nodes/callback-event.js",
+      "vk-method": "nodes/method.js"
     }
   },
   "dependencies": {
