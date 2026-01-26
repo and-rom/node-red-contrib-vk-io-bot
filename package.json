@@ -1,5 +1,5 @@
 {
-  "name": "@and-rom/node-red-contrib-vk-io-bot",
+  "name": "node-red-contrib-vk-io-bot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
