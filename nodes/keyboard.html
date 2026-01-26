@@ -19,7 +19,7 @@
     }
   };
 
-  RED.nodes.registerType('keyboard', {
+  RED.nodes.registerType('vk-keyboard', {
     category: 'vk',
     color: '#4C75A3',
     icon: 'vk.png',
@@ -30,7 +30,7 @@
       keyboard: {
         value: {
           buttons: [
-            [{ action: { type: "text", label: "Text button" }, color: "primary" }]
+            [{ action: { type: 'text', label: 'Text button' }, color: 'primary' }]
           ],
         },
         required: true
@@ -39,8 +39,9 @@
     inputs: 1,
     outputs: 1,
     label: function () {
-      return this.name || 'Keyboard';
+      return this.name || 'keyboard';
     },
+    paletteLabel: 'keyboard',
     oneditprepare: function () {
       var node = this;
       node.keyboardOld = JSON.stringify(node.keyboard);
@@ -249,7 +250,7 @@
 
 
 
-<script type="text/html" data-template-name="keyboard">
+<script type="text/html" data-template-name="vk-keyboard">
   <div class="form-row">
     <label for="node-input-name">
       <i class="fa fa-tag"></i><span> Имя</span>
@@ -287,6 +288,6 @@
   </div>
 </script>
 
-<script type="text/html" data-help-name="keyboard">
+<script type="text/html" data-help-name="vk-keyboard">
   <a href="https://dev.vk.com/api/bots/development/keyboard">https://dev.vk.com/api/bots/development/keyboard</a>
 </script>

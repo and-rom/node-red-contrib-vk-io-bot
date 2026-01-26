@@ -1,20 +1,21 @@
 <script type="text/javascript">
-  RED.nodes.registerType('callback-event', {
+  RED.nodes.registerType('vk-callback-event', {
     category: 'vk',
     color: '#4C75A3',
     icon: 'vk.png',
-    align: "right",
+    align: 'right',
     defaults: {
       name: { value: '' },
-      config: { type: 'vk-config' },
+      config: { value: '', type: 'vk-config' },
       event: { value: 'message_new' },
       customEvent: { value: '' }
     },
     inputs: 1,
     outputs: 1,
     label: function () {
-      return this.name || 'Callback event';
+      return this.name || 'callback event';
     },
+    paletteLabel: 'callback-event',
     oneditprepare: function () {
       var node = this;
       $('#node-input-name').val(node.name);
@@ -53,26 +54,26 @@
   });
 </script>
 
-<script type="text/html" data-template-name="callback-event">
+<script type="text/html" data-template-name="vk-callback-event">
     <div class="form-row">
       <label for="node-input-name">
         <i class="fa fa-tag"></i> Имя
       </label>
       <input type="text" id="node-input-name" placeholder="Введите имя">
     </div>
-  
+
     <div class="form-row">
       <label for="node-input-config">
         <i class="fa fa-cogs"></i> Конфигурация
       </label>
       <input id="node-input-config">
     </div>
-  
+
     <div class="form-row">
       <label for="node-input-event">
         <i class="fa fa-list"></i> Событие
       </label>
-      <select id="node-input-event">    
+      <select id="node-input-event">
         <option value="custom">Custom</option>
         <option value="message_new">Сообщение (новое)</option>
         <option value="message_reply">Сообщение (ответ)</option>
@@ -129,7 +130,7 @@
         <option value="donut_money_withdraw_error">Ошибка списания средств из Donut</option>
     </select>
     </div>
-  
+
     <div class="form-row" id="node-input-custom-event-row" style="display: none;">
       <label for="node-input-custom-event">
         <i class="fa fa-code"></i> Пользовательское событие
@@ -138,6 +139,6 @@
     </div>
   </script>
 
-<script type="text/html" data-help-name="vk-callback">
+<script type="text/html" data-help-name="vk-callback-event">
     <a href="https://dev.vk.com/api/community-events/json-schema">https://dev.vk.com/api/community-events/json-schema</a>
   </script>

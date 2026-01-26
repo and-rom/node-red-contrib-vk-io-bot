@@ -1,7 +1,7 @@
 const { VK } = require('vk-io');
 
 module.exports = function (RED) {
-    function CallbackEventNode(config) {
+    function VkCallbackEventNode(config) {
         RED.nodes.createNode(this, config);
         this.config = RED.nodes.getNode(config.config);
         const node = this;
@@ -15,11 +15,11 @@ module.exports = function (RED) {
             token: this.config.token,
             apiVersion: this.config.apiVersion
         });
-        
+
         vk.updates.on(event, (context) => {
             // Обработка события
             // context - объект контекста события
-      
+
             // Создаем объект сообщения для отправки в следующий узел
             var msg = {
               type_event:event,
@@ -45,11 +45,11 @@ module.exports = function (RED) {
                 } else {
                     node.error(`Callback приходит без поля secret\n Callback:${msg.payload.toString()}`);
                 }
-                
+
             } else {
                 vk.updates.handleWebhookUpdate(msg.payload);
             }
-            
+
         })
 
         node.on('close', function () {
@@ -57,5 +57,5 @@ module.exports = function (RED) {
         });
     }
 
-    RED.nodes.registerType('callback-event', CallbackEventNode);
+    RED.nodes.registerType('vk-callback-event', VkCallbackEventNode);
 };
