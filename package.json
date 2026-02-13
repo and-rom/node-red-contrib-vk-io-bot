@@ -1,6 +1,6 @@
 {
   "name": "@and-rom/node-red-contrib-vk-io-bot",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,10 @@
     "bot"
   ],
   "author": "borovlioff",
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/borovlioff/node-red-contrib-vk-io-bot.git"
+  },
   "license": "MIT",
   "bugs": {
       "url": "https://github.com/borovlioff/node-red-contrib-vk-io-bot/issues"
