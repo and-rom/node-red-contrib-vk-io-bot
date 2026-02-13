@@ -47,8 +47,8 @@
       node.keyboardOld = JSON.stringify(node.keyboard);
       node.gridHeight = node.keyboard.buttons.length;
       $('#node-input-name').val(node.name);
-      node.keyboard.inline = $('#node-input-inline').is("checked");
-      node.keyboard.one_time = $('#node-input-one_time').is("checked");
+      $('#node-input-inline').prop("checked", node.keyboard.inline);
+      $('#node-input-one_time').prop("checked", node.keyboard.one_time);
 
       function renderButtons(buttons) {
         if (!buttons?.length) {
