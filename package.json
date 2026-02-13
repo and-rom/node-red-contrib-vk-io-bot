@@ -1,6 +1,6 @@
 {
   "name": "@and-rom/node-red-contrib-vk-io-bot",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,9 @@
       "url": "https://github.com/borovlioff/node-red-contrib-vk-io-bot/issues"
   },
   "homepage": "https://github.com/borovlioff/node-red-contrib-vk-io-bot",
+  "engines": {
+      "node": ">=12.0.0"
+  },
   "node-red": {
     "version": ">=2.0.0",
     "nodes": {
