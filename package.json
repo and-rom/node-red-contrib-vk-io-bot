@@ -1,6 +1,6 @@
 {
   "name": "@and-rom/node-red-contrib-vk-io-bot",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -14,9 +14,9 @@
   "author": "borovlioff",
   "license": "MIT",
   "bugs": {
-      "url": "https://github.com/borovlioff/node-red-contrib-nagios-nsca-send/issues"
+      "url": "https://github.com/borovlioff/node-red-contrib-vk-io-bot/issues"
   },
-  "homepage": "https://github.com/borovlioff/node-red-contrib-nagios-nsca-send",
+  "homepage": "https://github.com/borovlioff/node-red-contrib-vk-io-bot",
   "node-red": {
     "version": ">=2.0.0",
     "nodes": {
