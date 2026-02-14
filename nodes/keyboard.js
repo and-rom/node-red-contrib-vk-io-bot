@@ -7,11 +7,18 @@ module.exports = function (RED) {
       let node = this;
       node.on('input', function (msg) {
 
+      let keyboard;
+      if(msg.hasOwnProperty("keyboard") && typeof msg.keyboard == "object") {
+          keyboard = msg.keyboard;
+      } else {
+          keyboard = config.keyboard;
+      }
+
       if(msg.hasOwnProperty("payload") && typeof msg.payload !== "object"){
           node.status({ fill: 'red', shape: 'ring', text: 'msg.payload is object' });
           node.error('Failed to send message:', "object");
         } else {
-          msg.payload = {...msg.payload, keyboard: JSON.stringify(config.keyboard)}
+          msg.payload = {...msg.payload, keyboard: JSON.stringify(keyboard)}
           node.send(msg);
         }
 
