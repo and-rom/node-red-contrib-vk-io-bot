@@ -29,6 +29,7 @@ module.exports = function (RED) {
                 initialDelay: msg.initialDelay || 2000,
                 backoffFactor: msg.backoffFactor || 2,
                 maxDelay: msg.maxDelay || (msg.initialDelay || 2000) * Math.pow(msg.backoffFactor || 2, (msg.maxRetries || 5) - 2),
+                nextDelay: msg.nextDelay || 1000
             };
 
             async function uploadWithRetry(uploadFn, itemInfo) {
@@ -37,6 +38,9 @@ module.exports = function (RED) {
 
                 for (let attempt = 1; attempt <= retryConfig.maxRetries; attempt++) {
                     try {
+                        if (attempt == 1)
+                            await new Promise(resolve => setTimeout(resolve, retryConfig.nextDelay * itemInfo.index));
+
                         node.status({
                             fill: 'blue',
                             shape: 'dot',
