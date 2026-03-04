@@ -20,18 +20,41 @@ module.exports = function (RED) {
             return;
         }
 
-        if (msg.messagePhoto) {
-            if (!Array.isArray(msg.messagePhoto)) msg.messagePhoto = [msg.messagePhoto]
+        if (msg.messagePhoto || msg.messageDocument) {
+            if (typeof msg.messagePhoto !== 'undefined' && !Array.isArray(msg.messagePhoto)) msg.messagePhoto = [msg.messagePhoto]
+            if (typeof msg.messageDocument !== 'undefined' && !Array.isArray(msg.messageDocument)) msg.messageDocument = [msg.messageDocument]
 
-            const attachments = await Promise.all(
-              msg.messagePhoto.map(i =>
-                vk.upload.messagePhoto({
-                  source: {
-                    value: i
-                  }
-                })
-              )
-            );
+            const attachments = await Promise.all([
+                 Promise.all((msg.messagePhoto || []).map(async i => vk.upload.messagePhoto({
+                        peer_id: peer_id,
+                        source: {
+                            values: [{value: i}],
+                            timeout: msg.uploadTimeout || 60e3
+                        }
+                    })
+                    .catch((error) => {
+                        node.error('Failed to upload photo: '+ error.toString());
+                    })
+                )),
+                Promise.all((msg.messageDocument || []).map(async i => vk.upload.messageDocument({
+                        peer_id: peer_id,
+                        source: {
+                            values: [
+                                {
+                                    value: Buffer.isBuffer(i.body) ? i.body : Buffer.from(i.body),
+                                    filename: i.filename,
+                                    contentType: i.contenttype
+                                }
+                            ],
+                            timeout: msg.uploadTimeout || 60e3
+                        }
+                    })
+                    .catch((error) => {
+                        node.error('Failed to upload document '+ error.toString());
+                    })
+                ))
+            ])
+            .then(results => results.flat());
 
             await vk.api.messages.send({
                   peer_id: peer_id,
