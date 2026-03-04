@@ -15,6 +15,11 @@ module.exports = function (RED) {
         var text = config.text || msg.payload.text;
         var random_id = Date.now();
 
+        if (typeof peer_id === 'undefined') {
+            node.error('Failed to send message: peer_id is not set');
+            return;
+        }
+
         if (msg.messagePhoto) {
             if (!Array.isArray(msg.messagePhoto)) msg.messagePhoto = [msg.messagePhoto]
 
