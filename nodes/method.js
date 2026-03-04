@@ -16,7 +16,7 @@ module.exports = function(RED) {
 
     this.on('input', function(msg) {
       var method = config.method || msg.payload.method;
-      let configParams = JSON.parse(config.params) || null;
+      let configParams = config.params ? JSON.parse(config.params) : {};
       configParams = isEmpty(configParams) ? null : configParams;
       var params = configParams || msg.payload.params;
       vk.api.call(method, params)

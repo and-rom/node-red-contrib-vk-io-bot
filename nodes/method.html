@@ -23,7 +23,7 @@
         $('#node-input-params').val(node.params);
         $('#node-input-config').val(node.config);
 
-        var params = JSON.parse(node.params) || {};
+        var params = node.params ? JSON.parse(node.params) : {};
 
         for (var key in params) {
           if (params.hasOwnProperty(key)) {
