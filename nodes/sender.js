@@ -24,41 +24,84 @@ module.exports = function (RED) {
             if (typeof msg.messagePhoto !== 'undefined' && !Array.isArray(msg.messagePhoto)) msg.messagePhoto = [msg.messagePhoto]
             if (typeof msg.messageDocument !== 'undefined' && !Array.isArray(msg.messageDocument)) msg.messageDocument = [msg.messageDocument]
 
+            const retryConfig = {
+                maxRetries: msg.maxRetries || 5,
+                initialDelay: msg.initialDelay || 2000,
+                backoffFactor: msg.backoffFactor || 2,
+                maxDelay: msg.maxDelay || (msg.initialDelay || 2000) * Math.pow(msg.backoffFactor || 2, (msg.maxRetries || 5) - 2),
+            };
+
+            async function uploadWithRetry(uploadFn, itemInfo) {
+                let lastError;
+                let delay = retryConfig.initialDelay;
+
+                for (let attempt = 1; attempt <= retryConfig.maxRetries; attempt++) {
+                    try {
+                        node.status({
+                            fill: 'blue',
+                            shape: 'dot',
+                            text: `Uploading ${itemInfo.type} ${itemInfo.index + 1}/${itemInfo.total} (attempt ${attempt})`
+                        });
+
+                        return await uploadFn();
+                    } catch (error) {
+                        lastError = error;
+
+                        if (attempt === retryConfig.maxRetries) {
+                            node.error(`Failed to upload ${itemInfo.type} ${itemInfo.index + 1} after ${retryConfig.maxRetries} attempts: ${error.toString()}`);
+                            break;
+                        }
+
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay = Math.min(delay * retryConfig.backoffFactor, retryConfig.maxDelay);
+                    }
+                }
+
+                throw lastError;
+            }
+
             const attachments = await Promise.all([
-                 Promise.all((msg.messagePhoto || []).map(async i => vk.upload.messagePhoto({
-                        peer_id: peer_id,
-                        source: {
-                            values: [{value: i}],
-                            timeout: msg.uploadTimeout || 60e3
-                        }
-                    })
-                    .catch((error) => {
-                        node.error('Failed to upload photo: '+ error.toString());
-                    })
-                )),
-                Promise.all((msg.messageDocument || []).map(async i => vk.upload.messageDocument({
-                        peer_id: peer_id,
-                        source: {
-                            values: [
-                                {
-                                    value: Buffer.isBuffer(i.body) ? i.body : Buffer.from(i.body),
-                                    filename: i.filename,
-                                    contentType: i.contenttype
-                                }
-                            ],
-                            timeout: msg.uploadTimeout || 60e3
-                        }
-                    })
-                    .catch((error) => {
-                        node.error('Failed to upload document '+ error.toString());
-                    })
-                ))
-            ])
-            .then(results => results.flat());
+                ...(msg.messagePhoto || []).map((item, index) =>
+                    uploadWithRetry(
+                        () => vk.upload.messagePhoto({
+                            peer_id: peer_id,
+                            source: {
+                                values: [{ value: item }],
+                                timeout: msg.uploadTimeout || 60e3
+                            }
+                        }),
+                        { type: 'photo', index, total: (msg.messagePhoto || []).length }
+                    ).catch(() => undefined)
+                ),
+                ...(msg.messageDocument || []).map((item, index) =>
+                    uploadWithRetry(
+                        () => vk.upload.messageDocument({
+                            peer_id: peer_id,
+                            source: {
+                                values: [{
+                                    value: Buffer.isBuffer(item.body) ? item.body : Buffer.from(item.body),
+                                    filename: item.filename,
+                                    contentType: item.contenttype
+                                }],
+                                timeout: msg.uploadTimeout || 60e3
+                            }
+                        }),
+                        { type: 'document', index, total: (msg.messageDocument || []).length }
+                    ).catch(() => undefined)
+                )
+            ]);
+
+            const validAttachments = attachments.filter(i => typeof i !== 'undefined');
+
+            if (validAttachments.length == 0 && typeof text == 'undefined') {
+                node.status({ fill: 'red', shape: 'ring', text: 'Failed to send message' });
+                node.error('Failed to send message: text is not set and attachment is empty');
+                return;
+            }
 
             await vk.api.messages.send({
                   peer_id: peer_id,
-                  attachment: attachments,
+                  attachment: validAttachments,
                   message: text,
                   random_id: random_id,
             })
@@ -76,8 +119,6 @@ module.exports = function (RED) {
                 node.status({ fill: 'red', shape: 'ring', text: 'Failed to send message' });
                 node.error('Failed to send message: '+ error.toString());
             });
-
-
         } else {
             if (typeof text === 'undefined') {
                 node.error('Failed to send message: text is not set');
