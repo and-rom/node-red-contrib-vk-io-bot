@@ -56,6 +56,11 @@ module.exports = function (RED) {
 
 
         } else {
+            if (typeof text === 'undefined') {
+                node.error('Failed to send message: text is not set');
+                return;
+            }
+
             vk.api.messages.send({
               peer_id: peer_id,
               message: text,
