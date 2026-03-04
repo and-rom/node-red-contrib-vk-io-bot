@@ -22,7 +22,13 @@ module.exports = function(RED) {
       vk.api.call(method, params)
         .then((res) => {
           node.status({ fill: 'green', shape: 'dot', text: 'API call success' });
-          node.send({ payload: res });
+          node.send({
+            ...msg,
+            payload:{
+                ...msg.payload,
+                response:res
+            }
+          });
         })
         .catch((error) => {
           node.status({ fill: 'red', shape: 'ring', text: 'API call failed' });

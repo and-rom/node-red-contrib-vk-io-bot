@@ -37,7 +37,11 @@ module.exports = function (RED) {
             .then((res) => {
                 node.status({ fill: 'green', shape: 'dot', text: 'Message sent' });
                 node.send({
-                    payload:{message_id:res}
+                    ...msg,
+                    payload:{
+                        peer_id: peer_id,
+                        response:res
+                    }
                 });
             })
             .catch((error) => {
@@ -57,7 +61,11 @@ module.exports = function (RED) {
             .then((res) => {
                 node.status({ fill: 'green', shape: 'dot', text: 'Message sent' });
                 node.send({
-                    payload:{message_id:res}
+                    ...msg,
+                    payload:{
+                        peer_id: peer_id,
+                        response:res
+                    }
                 });
             })
             .catch((error) => {
