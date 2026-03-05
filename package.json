@@ -11,7 +11,7 @@
     "vk-io",
     "bot"
   ],
-  "author": "borovlioff",
+  "author": "borovlioff, and-rom",
   "repository": {
       "type": "git",
       "url": "git+https://github.com/and-rom/node-red-contrib-vk-io-bot.git"
