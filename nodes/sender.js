@@ -11,8 +11,8 @@ module.exports = function (RED) {
     });
 
     this.on('input', async function (msg) {
-        var peer_id = config.peer_id || msg.payload.peer_id;
-        var text = config.text || msg.payload.text;
+        var peer_id = config.peer_id || msg.payload?.peer_id;
+        var text = config.text || msg.payload?.text;
         var random_id = Date.now();
 
         if (typeof peer_id === 'undefined') {
