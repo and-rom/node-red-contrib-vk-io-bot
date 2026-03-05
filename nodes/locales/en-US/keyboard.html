@@ -1,0 +1,43 @@
+<script type="text/html" data-help-name="vk-keyboard">
+    <p>Keyboard builder</p>
+
+    <h3>Inputs</h3>
+        <dl class="message-properties">
+            <dt class="optional">keyboard
+                <span class="property-type">object</span>
+            </dt>
+            <dd> object representing keyboard </dd>
+        </dl>
+
+    <h3>Outputs</h3>
+        <dl class="message-properties">
+            <dt>payload.keyboard
+                <span class="property-type">string</span></dt>
+            <dd> serialized keyboard JSON </dd>
+        </dl>
+
+    <h3>Details</h3>
+        <p>Example <code>msg.keyboard</code>:</p>
+        <code><pre>
+{
+  "buttons": [
+    [
+      {
+        "action": {
+          "type": "text",
+          "label": "Text button"
+        },
+        "color": "primary"
+      }
+    ]
+  ],
+  "inline": false,
+  "one_time": false
+}
+        </pre></code>
+
+    <h3>References</h3>
+        <ul>
+            <a href="https://dev.vk.com/api/bots/development/keyboard">https://dev.vk.com/api/bots/development/keyboard</a>
+        </ul>
+</script>

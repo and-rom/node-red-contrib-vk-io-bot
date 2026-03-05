@@ -1,0 +1,30 @@
+{
+    "label": {
+        "options": "Output",
+        "inline": "inline",
+        "onetime": "one-time",
+        "keyboard": "Keyboard buttons",
+        "row": "Row",
+        "row_add": "Add row",
+        "row_add_up": "Add row above",
+        "row_del": "Delete row",
+        "button_type": "Button type",
+        "button_add": "Add button",
+        "button_del": "Delete button",
+        "value": "Value",
+        "attr_new": "New attribute",
+        "attr_add": "Add attribute",
+        "attr_del": "Delete attribute"
+    },
+    "alert": {
+        "row": "Cannot delete last row",
+        "button": "Cannot delete last button"
+    },
+    "status": {
+        "ok": "Message sent",
+        "failed": "Failed to send message"
+    },
+    "error": {
+        "failed": "Failed to send message: msg.payload is not object"
+    }
+}

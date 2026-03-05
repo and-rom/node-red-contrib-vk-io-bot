@@ -1,0 +1,43 @@
+<script type="text/html" data-help-name="vk-keyboard">
+    <p>Конструктор клавиатуры</p>
+
+    <h3>Входные данные</h3>
+        <dl class="message-properties">
+            <dt class="optional">keyboard
+                <span class="property-type">object</span>
+            </dt>
+            <dd> объект, представляющий клавиатуру </dd>
+        </dl>
+
+    <h3>Выходные данные</h3>
+        <dl class="message-properties">
+            <dt>payload.keyboard
+                <span class="property-type">string</span></dt>
+            <dd> сериализованная клавиатура в JSON </dd>
+        </dl>
+
+    <h3>Детали</h3>
+        <p>Пример <code>msg.keyboard</code>:</p>
+        <code><pre>
+{
+  "buttons": [
+    [
+      {
+        "action": {
+          "type": "text",
+          "label": "Text button"
+        },
+        "color": "primary"
+      }
+    ]
+  ],
+  "inline": false,
+  "one_time": false
+}
+        </pre></code>
+
+    <h3>Ссылки</h3>
+        <ul>
+            <a href="https://dev.vk.com/api/bots/development/keyboard">https://dev.vk.com/api/bots/development/keyboard</a>
+        </ul>
+</script>

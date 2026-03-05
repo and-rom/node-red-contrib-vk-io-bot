@@ -57,7 +57,7 @@
         $('#keyboard-buttons').empty();
         buttons.map((row, i) => {
           var rowButtons = $('<div class="keyboard-row-buttons" data-row-id="' + i + '"></div>');
-          var rowNumber = $(`<p class="form-row">Строка: ${i + 1}</p>`);
+          var rowNumber = $(`<p class="form-row">${node._('label.row')}: ${i + 1}</p>`);
           rowButtons.append(rowNumber);
           row.map((button, j) => {
             var buttonPresent = $(`<button class="editor-button form-row" style="margin-right:0.5rem;border-color:${button?.color ? buttonColors[button.color].light : buttonColors.secondary.light}">${button.action?.label ? button.action.label : button.action.type}</button>`)
@@ -68,7 +68,7 @@
               buttonCol.toggle();
             })
             var buttonTypeRow = $('<div class="form-row"></div>');
-            var buttonTypeLabel = $('<label class="field-label">Тип кнопки</label>');
+            var buttonTypeLabel = $(`<label class="field-label">${node._('label.button_type')}</label>`);
             var buttonTypeValue = $('<input type="text" class="button-field" value="' + button.action.type + '">');
             buttonTypeValue.change(() => {
               saveAttr({ rowId: i, buttonId: j, attrName: "type", attrValue: buttonTypeValue.val() });
@@ -83,7 +83,7 @@
                 let attrRow = $('<div class="form-row"></div>');
                 var attrLabel = $('<label class="field-label form-row">' + attr + '</label>');
                 var attrInput = $(`<input type="text" class="button-field" data-row-id="${i}" data-button-id="${j}" data-field="${attr}" value="${(value ? value : '')}">`);
-                var removeAttrButton = $('<button class="editor-button remove-attribute" data-row-id="' + i + '" data-button-id="' + j + '" data-field="' + attr + '">Удалить атрибут</button>');
+                var removeAttrButton = $(`<button class="editor-button remove-attribute" data-row-id="${i}" data-button-id="${j}" data-field="${attr}">${node._('label.attr_del')}</button>`);
                 removeAttrButton.click(() => {
                   removeAttribute(i, j, attr);
                   attrLabel.remove();
@@ -101,14 +101,14 @@
 
             if (button.color) {
               var colorRow = $('<div class="form-row"></div>');
-              var colorLabel = $('<label class="field-label form-row">Color</label>');
+              var colorLabel = $('<label class="field-label form-row">color</label>');
               var colorInput = $(`<select>
                                     <option value="primary" ${button.color === "primary"? "selected":""} style="color:${buttonColors.primary.light}">Primary</option>
                                     <option value="secondary" ${button.color === "secondary"? "selected":""} style="color:${buttonColors.secondary.light}">Secondary</option>
                                     <option value="negative" ${button.color === "negative"? "selected":""} style="color:${buttonColors.negative.light}">Negative</option>
                                     <option value="positive" ${button.color === "positive"? "selected":""} style="color:${buttonColors.positive.light}">Positive</option>
                                   </select>`);
-              var colorRemoveButton = $('<button class="editor-button remove-attribute">Удалить атрибут</button>');
+              var colorRemoveButton = $(`<button class="editor-button remove-attribute">${node._('label.attr_del')}</button>`);
               colorRemoveButton.click(() => {
                 removeColor(i, j);
                 colorRow.remove();
@@ -123,11 +123,11 @@
             }
 
             var newAttrTitleRow = $('<div class="form-row"></div>');;
-            var newAttrLabel = $('<label class="field-label">Новый атрибут</label>');
+            var newAttrLabel = $(`<label class="field-label">${node._('label.attr_new')}</label>`);
             var newAttrRow = $('<div class="form-row"></div>');
-            var newAttrNameInput = $('<input type="text" style="width:50%;" class="button-field new-attr-name" placeholder="Имя">');
-            var newAttrValueInput = $('<input type="text" style="width:50%;" class="button-field new-attr-value" placeholder="Значение">');
-            var addAttrButton = $('<button style="float:right;" class="editor-button editor-button-small add-attribute" data-row-id="' + i + '" data-button-id="' + j + '">Добавить атрибут</button>');
+            var newAttrNameInput = $(`<input type="text" style="width:50%;" class="button-field new-attr-name" placeholder="${node._('node-red:common.label.name')}">`);
+            var newAttrValueInput = $(`<input type="text" style="width:50%;" class="button-field new-attr-value" placeholder="${node._('label.value')}">`);
+            var addAttrButton = $(`<button style="float:right;" class="editor-button editor-button-small add-attribute" data-row-id="${i}" data-button-id="${j}">${node._('label.attr_add')}</button>`);
             addAttrButton.click(() => {
               addAttributeButton({ rowId: i, buttonId: j, attrName: newAttrNameInput.val(), attrValue: newAttrValueInput.val() });
             });
@@ -139,7 +139,7 @@
             buttonCol.append(newAttrRow);
 
 
-            var removeButton = $('<button class="editor-button form-row remove-button" data-row-id="' + i + '" data-button-id="' + j + '">Удалить кнопку</button>');
+            var removeButton = $(`<button class="editor-button form-row remove-button" data-row-id="${i}" data-button-id="${j}">${node._('label.button_del')}</button>`);
             removeButton.click(() => {
               removeButtonRowCol(i, j);
             });
@@ -149,15 +149,15 @@
           });
 
           var rowAction = $('<div class="form-row keyboard-buttons-row-action"></div>');
-          var addButton = $('<button class="editor-button add-button" data-row-id="' + i + '">Добавить кнопку</button>');
-          var addRowButton = $('<button class="editor-button add-row">Добавить ряд</button>');
+          var addButton = $(`<button class="editor-button add-button" data-row-id="${i}">${node._('label.button_add')}</button>`);
+          var addRowButton = $(`<button class="editor-button add-row">${node._('label.row_add_up')}</button>`);
           addButton.click(() => {
             addButtonRowCol(i);
           });
           addRowButton.click(() => {
             addRow(i)
           })
-          var removeRowButton = $('<button class="editor-button remove-row-button" data-row-id="' + i + '">Удалить ряд</button>');
+          var removeRowButton = $(`<button class="editor-button remove-row-button" data-row-id="${i}">${node._('label.row_del')}</button>`);
           removeRowButton.click(() => {
             removeRow(i);
           });
@@ -188,7 +188,7 @@
 
       function removeRow(rowId) {
         if (node.keyboard.buttons.length === 1) {
-          alert("Нельзя удалить единственный ряд");
+          alert(node._('alert.row'));
           return;
         }
         node.keyboard.buttons.splice(rowId, 1);
@@ -203,7 +203,7 @@
 
       function removeButtonRowCol(rowId, buttonId) {
         if (node.keyboard.buttons[rowId].length === 1) {
-          alert("Нельзя удалить последнюю кнопку");
+          alert(node._('alert.button'));
           return;
         }
         node.keyboard.buttons[rowId].splice(buttonId, 1);
@@ -253,41 +253,38 @@
 <script type="text/html" data-template-name="vk-keyboard">
   <div class="form-row">
     <label for="node-input-name">
-      <i class="fa fa-tag"></i><span> Имя</span>
+      <i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span>
     </label>
-    <input type="text" id="node-input-name">
+    <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
   </div>
 
   <div class="form-row">
     <label>
-      <i class="fa fa-cog"></i><span> Выводить</span>
+      <i class="fa fa-cog"></i> <span data-i18n="label.options"></span>
     </label>
     <label style="width:70%;">
       <input type="checkbox" style="display: inline; width: 22px;vertical-align: top;" id="node-input-inline">
-      <span>в сообщение</span>
+      <span data-i18n="label.inline"></span>
     </label>
   </div>
 
   <div class="form-row">
     <label></label>
     <label style="width:70%;">
-      <input type="checkbox" style="display: inline; width: 22px;vertical-align: top;" id="node-input-one_time"><span>один раз</span>
+      <input type="checkbox" style="display: inline; width: 22px;vertical-align: top;" id="node-input-one_time">
+      <span data-i18n="label.onetime"></span>
     </label>
   </div>
 
   <div class="form-row">
     <label class="form-row" style="width: 100%;">
-      <i class="fa fa-keyboard-o"></i><span> Кнопки клавиатуры</span>
+      <i class="fa fa-keyboard-o"></i> <span data-i18n="label.keyboard"></span>
     </label>
     <div id="keyboard-buttons" class="form-row">
       <!-- Здесь будут отображены ряды с кнопками -->
     </div>
     <div class="form-row keyboard-editor-action">
-      <button id="add-row" class="editor-button" >Добавить ряд</button>
+      <button id="add-row" class="editor-button"><span data-i18n="label.row_add"></span></button>
     </div>
   </div>
-</script>
-
-<script type="text/html" data-help-name="vk-keyboard">
-  <a href="https://dev.vk.com/api/bots/development/keyboard">https://dev.vk.com/api/bots/development/keyboard</a>
 </script>

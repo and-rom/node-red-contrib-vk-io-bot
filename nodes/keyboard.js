@@ -15,11 +15,11 @@ module.exports = function (RED) {
       }
 
       if(msg.hasOwnProperty("payload") && typeof msg.payload !== "object"){
-          node.status({ fill: 'red', shape: 'ring', text: 'Failed to send message' });
-          node.error('Failed to send message: msg.payload is not object');
+          node.status({ fill: 'red', shape: 'ring', text: 'status.failed' });
+          node.error(RED._('error.failed'));
         } else {
           msg.payload = {...msg.payload, keyboard: JSON.stringify(keyboard)}
-          node.status({ fill: 'green', shape: 'dot', text: 'Message sent' });
+          node.status({ fill: 'green', shape: 'dot', text: 'status.ok' });
           node.send(msg);
         }
 
