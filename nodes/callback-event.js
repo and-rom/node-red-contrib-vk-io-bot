@@ -34,6 +34,8 @@ module.exports = function (RED) {
             if(msg.payload?.type === "confirmation"){
                 node.status({ fill: 'red', shape: 'ring', text: 'status.confirm' });
                 return;
+            } else {
+                node.status({});
             }
             if(node.config?.secret){
                 if(msg.payload?.secret){
