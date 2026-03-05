@@ -16,7 +16,7 @@ module.exports = function (RED) {
         var random_id = Date.now();
 
         if (typeof peer_id === 'undefined') {
-            node.error('Failed to send message: peer_id is not set');
+            node.error(RED._('error.send.failed', {error: `peer_id ${RED._('not_set')}`}));
             return;
         }
 
@@ -44,7 +44,7 @@ module.exports = function (RED) {
                         node.status({
                             fill: 'blue',
                             shape: 'dot',
-                            text: `Uploading ${itemInfo.type} ${itemInfo.index + 1}/${itemInfo.total} (attempt ${attempt})`
+                            text: RED._('status.upload', {type: RED._(itemInfo.type), index: itemInfo.index + 1, total: itemInfo.total, attempt: attempt})
                         });
 
                         return await uploadFn();
@@ -52,7 +52,7 @@ module.exports = function (RED) {
                         lastError = error;
 
                         if (attempt === retryConfig.maxRetries) {
-                            node.error(`Failed to upload ${itemInfo.type} ${itemInfo.index + 1} after ${retryConfig.maxRetries} attempts: ${error.toString()}`);
+                            node.error(RED._('error.upload.failed', {type: RED._(itemInfo.type), index: itemInfo.index + 1, retries: retryConfig.maxRetries, error: error.toString()}));
                             break;
                         }
 
@@ -98,8 +98,8 @@ module.exports = function (RED) {
             const validAttachments = attachments.filter(i => typeof i !== 'undefined');
 
             if (validAttachments.length == 0 && typeof text == 'undefined') {
-                node.status({ fill: 'red', shape: 'ring', text: 'Failed to send message' });
-                node.error('Failed to send message: text is not set and attachment is empty');
+                node.status({ fill: 'red', shape: 'ring', text: 'status.send.failed' });
+                node.error(RED._('error.send.failed', {error: `text ${RED._('not_set')} ${RED._('attachment_empty')}`}));
                 return;
             }
 
@@ -110,7 +110,7 @@ module.exports = function (RED) {
                   random_id: random_id,
             })
             .then((res) => {
-                node.status({ fill: 'green', shape: 'dot', text: 'Message sent' });
+                node.status({ fill: 'green', shape: 'dot', text: 'status.send.ok' });
                 node.send({
                     ...msg,
                     payload:{
@@ -120,12 +120,12 @@ module.exports = function (RED) {
                 });
             })
             .catch((error) => {
-                node.status({ fill: 'red', shape: 'ring', text: 'Failed to send message' });
-                node.error('Failed to send message: '+ error.toString());
+                node.status({ fill: 'red', shape: 'ring', text: 'status.send.failed' });
+                node.error(RED._('error.send.failed', {error: error.toString()}));
             });
         } else {
             if (typeof text === 'undefined') {
-                node.error('Failed to send message: text is not set');
+                node.error(RED._('error.send.failed', {error: `text ${RED._('not_set')}`}));
                 return;
             }
 
@@ -137,7 +137,7 @@ module.exports = function (RED) {
               // Другие параметры сообщения, если нужно
             })
             .then((res) => {
-                node.status({ fill: 'green', shape: 'dot', text: 'Message sent' });
+                node.status({ fill: 'green', shape: 'dot', text: 'status.send.ok' });
                 node.send({
                     ...msg,
                     payload:{
@@ -147,8 +147,8 @@ module.exports = function (RED) {
                 });
             })
             .catch((error) => {
-                node.status({ fill: 'red', shape: 'ring', text: 'Failed to send message' });
-                node.error('Failed to send message: '+ error.toString());
+                node.status({ fill: 'red', shape: 'ring', text: 'status.send.failed' });
+                node.error(RED._('error.send.failed', {error: error.toString()}));
             });
         }
     });

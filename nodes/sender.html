@@ -44,14 +44,14 @@
 <script type="text/html" data-template-name="vk-sender">
     <div class="form-row">
       <label for="node-input-name">
-        <i class="fa fa-tag"></i> Имя
+        <i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span>
       </label>
-      <input type="text" id="node-input-name" placeholder="Имя">
+      <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
     </div>
 
     <div class="form-row">
       <label for="node-input-config">
-        <i class="fa fa-cog"></i> Конфигурация
+        <i class="fa fa-cog"></i> <span data-i18n="label.configuration">
       </label>
       <input id="node-input-config" required>
     </div>
@@ -65,12 +65,8 @@
 
     <div class="form-row">
       <label for="node-input-text">
-        <i class="fa fa-pencil"></i> Текст сообщения
+        <i class="fa fa-pencil"></i> <span data-i18n="label.message_text">
       </label>
-      <input type="text" id="node-input-text" placeholder="Текст сообщения">
+      <input type="text" id="node-input-text" data-i18n="[placeholder]label.message_text">
     </div>
-  </script>
-
-  <script type="text/html" data-help-name="vk-sender">
-    <a href="https://dev.vk.com/method/messages.send">https://dev.vk.com/method/messages.send</a>
-  </script>
+</script>

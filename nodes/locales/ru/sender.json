@@ -1,0 +1,25 @@
+{
+    "label": {
+        "configuration": "Конфигурация",
+        "message_text": "Текст сообщения"
+    },
+    "status": {
+        "send": {
+            "ok": "Сообщение отправлено",
+            "failed": "Не удалось отправить сообщение"
+        },
+        "upload": "Загрузка __type__ __index__/__total__ (попытка __attempt__)"
+    },
+    "error": {
+        "send": {
+            "failed": "Не удалось отправить сообщение: __error__"
+        },
+        "upload": {
+            "failed": "Не удалось загрузить __type__ __index__ после __retries__ попыток: __error__"
+        }
+    },
+    "photo": "фото",
+    "document": "документ",
+    "not_set": "отсутствует",
+    "attachment_empty": "и вложение пустое"
+}

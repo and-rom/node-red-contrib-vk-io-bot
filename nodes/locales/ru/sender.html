@@ -1,0 +1,85 @@
+<script type="text/html" data-help-name="vk-sender">
+    <p>Отправляет сообщение указанному пользователю (можно отправить фото или файлы как вложения)</p>
+
+    <h3>Входные данные</h3>
+        <dl class="message-properties">
+            <dt class="optional">payload.peer_id
+                <span class="property-type">string | number</span>
+            </dt>
+            <dd> ID пользователя или чата </dd>
+
+            <dt class="optional">payload.text
+                <span class="property-type">string</span>
+            </dt>
+            <dd> текст сообщения </dd>
+
+            <dt class="optional">messagePhoto
+                <span class="property-type">buffer | array&lt;buffer&gt;</span>
+            </dt>
+            <dd> изображение или массив изображений </dd>
+
+            <dt class="optional">messageDocument
+                <span class="property-type">object | array&lt;object&gt;</span>
+            </dt>
+            <dd> объект или массив объектов, представляющих документ </dd>
+
+            <dt class="optional">messageDocument.body | messageDocument[].body
+                <span class="property-type">buffer</span>
+            </dt>
+            <dd> содержимое файла </dd>
+
+            <dt class="optional">messageDocument.filename | messageDocument[].filename
+                <span class="property-type">string</span>
+            </dt>
+            <dd> имя файла </dd>
+
+            <dt class="optional">messageDocument.contentType | messageDocument[].contentType
+                <span class="property-type">string</span>
+            </dt>
+            <dd> MIME-тип файла </dd>
+
+            <dt class="optional">maxRetries
+                <span class="property-type">number</span>
+            </dt>
+            <dd> максимальное количество попыток загрузки изображения или документа (по умолчанию 5) </dd>
+
+            <dt class="optional">initialDelay
+                <span class="property-type">number</span>
+            </dt>
+            <dd> начальная задержка после первой неудачной попытки в миллисекундах (по умолчанию 2000) </dd>
+
+            <dt class="optional">backoffFactor
+                <span class="property-type">number</span>
+            </dt>
+            <dd> множитель для увеличения задержки с каждой неудачной попыткой (по умолчанию 2) </dd>
+
+            <dt class="optional">maxDelay
+                <span class="property-type">number</span>
+            </dt>
+            <dd> максимальная задержка между попытками в миллисекундах (по умолчанию 16000) </dd>
+
+            <dt class="optional">nextDelay
+                <span class="property-type">number</span>
+            </dt>
+            <dd> задержка между элементами массива при первой попытке в миллисекундах (по умолчанию 1000) </dd>
+        </dl>
+
+    <h3>Выходные данные</h3>
+        <dl class="message-properties">
+            <dt>payload.peer_id
+                <span class="property-type">number</span></dt>
+            <dd> ID пользователя или чата </dd>
+
+            <dt>payload.response
+                <span class="property-type">number</span></dt>
+            <dd> ID сообщения </dd>
+        </dl>
+
+    <h3>Детали</h3>
+        <p>При отправке сообщения с вложением <code>msg.payload.text</code> может быть пустым или отсутствовать.</p>
+
+    <h3>Ссылки</h3>
+        <ul>
+            <li><a href="https://dev.vk.com/method/messages.send">https://dev.vk.com/method/messages.send</a></li>
+        </ul>
+</script>

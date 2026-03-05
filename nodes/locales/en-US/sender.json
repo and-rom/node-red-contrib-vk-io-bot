@@ -1,0 +1,25 @@
+{
+    "label": {
+        "configuration": "Configuration",
+        "message_text": "Message text"
+    },
+    "status": {
+        "send": {
+            "ok": "Message sent",
+            "failed": "Failed to send message"
+        },
+        "upload": "Uploading __type__ __index__/__total__ (attempt __attempt__)"
+    },
+    "error": {
+        "send": {
+            "failed": "Failed to send message: __error__"
+        },
+        "upload": {
+            "failed": "Failed to upload __type__ __index__ after __retries__ attempts: __error__"
+        }
+    },
+    "photo": "photo",
+    "document": "document",
+    "not_set": "is not set",
+    "attachment_empty": "and attachment is empty"
+}

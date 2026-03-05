@@ -1,0 +1,85 @@
+<script type="text/html" data-help-name="vk-sender">
+    <p>Sends a message to the given user</p>
+
+    <h3>Inputs</h3>
+        <dl class="message-properties">
+            <dt class="optional">payload.peer_id
+                <span class="property-type">string | number</span>
+            </dt>
+            <dd> user or chat ID </dd>
+
+            <dt class="optional">payload.text
+                <span class="property-type">string</span>
+            </dt>
+            <dd> message text </dd>
+
+            <dt class="optional">messagePhoto
+                <span class="property-type">buffer | array&lt;buffer&gt;</span>
+            </dt>
+            <dd> image or array of images </dd>
+
+            <dt class="optional">messageDocument
+                <span class="property-type">object | array&lt;object&gt;</span>
+            </dt>
+            <dd> object or array of objects representing document </dd>
+
+            <dt class="optional">messageDocument.body | messageDocument[].body
+                <span class="property-type">buffer</span>
+            </dt>
+            <dd> file contents </dd>
+
+            <dt class="optional">messageDocument.filename | messageDocument[].filename
+                <span class="property-type">string</span>
+            </dt>
+            <dd> file name </dd>
+
+            <dt class="optional">messageDocument.contentType | messageDocument[].contentType
+                <span class="property-type">string</span>
+            </dt>
+            <dd> file MIME-type </dd>
+
+            <dt class="optional">maxRetries
+                <span class="property-type">number</span>
+            </dt>
+            <dd> max number of upload attempts of image or document (default 5) </dd>
+
+            <dt class="optional">initialDelay
+                <span class="property-type">number</span>
+            </dt>
+            <dd> initial delay after first failed attempt in milliseconds (default 2000) </dd>
+
+            <dt class="optional">backoffFactor
+                <span class="property-type">number</span>
+            </dt>
+            <dd> multiplier for increasing delay with each failed attempt (default 2) </dd>
+
+            <dt class="optional">maxDelay
+                <span class="property-type">number</span>
+            </dt>
+            <dd> max delay between attempts in milliseconds (default 16000) </dd>
+
+            <dt class="optional">nextDelay
+                <span class="property-type">number</span>
+            </dt>
+            <dd> delay between items in array on first attempt in milliseconds (default 1000) </dd>
+        </dl>
+
+    <h3>Outputs</h3>
+        <dl class="message-properties">
+            <dt>payload.peer_id
+                <span class="property-type">number</span></dt>
+            <dd> user or chat ID </dd>
+
+            <dt>payload.response
+                <span class="property-type">number</span></dt>
+            <dd> message ID </dd>
+        </dl>
+
+    <h3>Details</h3>
+        <p>When sending a message with an attachment, <code>msg.payload.text</code> can be empty or not set.</p>
+
+    <h3>References</h3>
+        <ul>
+            <li><a href="https://dev.vk.com/method/messages.send">https://dev.vk.com/method/messages.send</a></li>
+        </ul>
+</script>
