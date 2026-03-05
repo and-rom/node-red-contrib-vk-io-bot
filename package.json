@@ -14,13 +14,13 @@
   "author": "borovlioff",
   "repository": {
       "type": "git",
-      "url": "git+https://github.com/borovlioff/node-red-contrib-vk-io-bot.git"
+      "url": "git+https://github.com/and-rom/node-red-contrib-vk-io-bot.git"
   },
   "license": "MIT",
   "bugs": {
-      "url": "https://github.com/borovlioff/node-red-contrib-vk-io-bot/issues"
+      "url": "https://github.com/and-rom/node-red-contrib-vk-io-bot/issues"
   },
-  "homepage": "https://github.com/borovlioff/node-red-contrib-vk-io-bot",
+  "homepage": "https://github.com/and-rom/node-red-contrib-vk-io-bot",
   "engines": {
       "node": ">=12.0.0"
   },
