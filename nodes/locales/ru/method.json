@@ -1,0 +1,18 @@
+{
+    "label": {
+        "configuration": "Конфигурация",
+        "method": "Метод",
+        "params": "Параметры",
+        "param_add": "Добавить",
+        "param_del": "Удалить",
+        "param_key": "Ключ",
+        "param_val": "Значение"
+    },
+    "status": {
+        "ok": "Вызов API успешен",
+        "failed": "Вызов API не удался"
+    },
+    "error": {
+        "failed": "Вызов API не удался: __error__"
+    }
+}

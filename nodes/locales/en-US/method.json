@@ -1,0 +1,18 @@
+{
+    "label": {
+        "configuration": "Configuration",
+        "method": "Method",
+        "params": "Parameters",
+        "param_add": "Add",
+        "param_del": "Remove",
+        "param_key": "Key",
+        "param_val": "Value"
+    },
+    "status": {
+        "ok": "API call success",
+        "failed": "API call failed"
+    },
+    "error": {
+        "failed": "API call failed: __error__"
+    }
+}

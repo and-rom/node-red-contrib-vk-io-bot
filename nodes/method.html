@@ -38,9 +38,9 @@
 
         function addParamField(key, value) {
           var row = $('<div class="param-row" style="display: flex; margin-bottom: 5px;"></div>');
-          var keyInput = $('<input type="text" class="param-key" placeholder="Key" style="width: 50%;">').val(key);
-          var valueInput = $('<input type="text" class="param-value" placeholder="Value" style="width: 50%;">').val(value);
-          var removeButton = $('<button type="button" class="param-remove">Remove</button>');
+          var keyInput = $(`<input type="text" class="param-key" placeholder="${node._('label.param_key')}" style="width: 50%;">`).val(key);
+          var valueInput = $(`<input type="text" class="param-value" placeholder="${node._('label.param_val')}" style="width: 50%;">`).val(value);
+          var removeButton = $(`<button type="button" class="param-remove">${node._('label.param_del')}</button>`);
 
           keyInput.on('input', saveNode);
           valueInput.on('input', saveNode);
@@ -99,35 +99,31 @@
   <script type="text/html" data-template-name="vk-method">
     <div class="form-row">
       <label for="node-input-name">
-        <i class="fa fa-tag"></i> Имя
+        <i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span>
       </label>
-      <input type="text" id="node-input-name" placeholder="Имя">
+      <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
     </div>
 
     <div class="form-row">
       <label for="node-input-config">
-        <i class="fa fa-cog"></i> Конфигурация
+        <i class="fa fa-cog"></i> <span data-i18n="label.configuration"></span>
       </label>
       <input id="node-input-config" required>
     </div>
 
     <div class="form-row">
       <label for="node-input-method">
-        <i class="fa fa-wrench"></i> Метод
+        <i class="fa fa-wrench"></i> <span data-i18n="label.method"></span>
       </label>
       <input type="text" id="node-input-method" placeholder="messages.send">
     </div>
 
     <div class="form-row">
       <label for="node-input-params">
-        <i class="fa fa-cog"></i> Параметры
+        <i class="fa fa-cog"></i> <span data-i18n="label.params"></span>
       </label>
       <input type="hidden" id="node-input-params">
       <div id="param-container"></div>
-      <button type="button" id="add-param">Добавить параметр</button>
+      <button type="button" id="add-param"><span data-i18n="label.param_add"></span></button>
     </div>
-  </script>
-
-  <script type="text/html" data-help-name="vk-method">
-    <a href="https://dev.vk.com/method">https://dev.vk.com/method</a>
   </script>
