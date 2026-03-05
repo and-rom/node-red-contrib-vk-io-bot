@@ -31,8 +31,8 @@ module.exports = function (RED) {
 
 
         node.on('input', function (msg) {
-            if(msg.payload.type === "confirmation"){
-                node.status({ fill: 'red', shape: 'ring', text: 'Подтвердите ваш сервер' });
+            if(msg.payload?.type === "confirmation"){
+                node.status({ fill: 'red', shape: 'ring', text: 'status.confirm' });
                 return;
             }
             if(node.config?.secret){
@@ -40,13 +40,15 @@ module.exports = function (RED) {
                     if(msg.payload.secret === node.config.secret){
                         vk.updates.handleWebhookUpdate(msg.payload);
                     } else {
-                        node.error(`Не верный secret ${msg.payload.secret}`);
+                        node.error(`${RED._('error.wrong_secret')}: ${msg.payload.secret}`);
                     }
                 } else {
-                    node.error(`Callback приходит без поля secret\n Callback:${msg.payload.toString()}`);
+                    node.error(`${RED._('error.no_secret_msg')}\n Callback: ${msg.payload.toString()}`);
                 }
 
             } else {
+                if(msg.payload?.secret)
+                    node.warn(`${RED._('error.no_secret_config')}: ${msg.payload.secret}`);
                 vk.updates.handleWebhookUpdate(msg.payload);
             }
 

@@ -57,88 +57,84 @@
 <script type="text/html" data-template-name="vk-callback-event">
     <div class="form-row">
       <label for="node-input-name">
-        <i class="fa fa-tag"></i> Имя
+        <i class="fa fa-tag"></i> <span data-i18n="node-red:common.label.name"></span>
       </label>
-      <input type="text" id="node-input-name" placeholder="Введите имя">
+      <input type="text" id="node-input-name" data-i18n="[placeholder]node-red:common.label.name">
     </div>
 
     <div class="form-row">
       <label for="node-input-config">
-        <i class="fa fa-cogs"></i> Конфигурация
+        <i class="fa fa-cogs"></i> <span data-i18n="label.configuration"></span>
       </label>
       <input id="node-input-config">
     </div>
 
     <div class="form-row">
       <label for="node-input-event">
-        <i class="fa fa-list"></i> Событие
+        <i class="fa fa-list"></i> <span data-i18n="label.event"></span>
       </label>
       <select id="node-input-event">
-        <option value="custom">Custom</option>
-        <option value="message_new">Сообщение (новое)</option>
-        <option value="message_reply">Сообщение (ответ)</option>
-        <option value="message_edit">Сообщение (редактирование)</option>
-        <option value="message_allow">Разрешение на сообщения</option>
-        <option value="message_deny">Запрет на сообщения</option>
-        <option value="message_typing_state">Состояние набора сообщения</option>
-        <option value="message_event">Событие сообщения</option>
-        <option value="photo_new">Фото (новое)</option>
-        <option value="photo_comment_new">Фото (новый комментарий)</option>
-        <option value="photo_comment_edit">Фото (редактирование комментария)</option>
-        <option value="photo_comment_restore">Фото (восстановление комментария)</option>
-        <option value="photo_comment_delete">Фото (удаление комментария)</option>
-        <option value="audio_new">Аудио (новое)</option>
-        <option value="video_new">Видео (новое)</option>
-        <option value="video_comment_new">Видео (новый комментарий)</option>
-        <option value="video_comment_edit">Видео (редактирование комментария)</option>
-        <option value="video_comment_restore">Видео (восстановление комментария)</option>
-        <option value="video_comment_delete">Видео (удаление комментария)</option>
-        <option value="wall_post_new">Запись на стене (новая)</option>
-        <option value="wall_repost">Репост записи на стене</option>
-        <option value="wall_reply_new">Комментарий на стене (новый)</option>
-        <option value="wall_reply_edit">Комментарий на стене (редактирование)</option>
-        <option value="wall_reply_restore">Комментарий на стене (восстановление)</option>
-        <option value="wall_reply_delete">Комментарий на стене (удаление)</option>
-        <option value="like_add">Лайк (добавление)</option>
-        <option value="like_remove">Лайк (удаление)</option>
-        <option value="board_post_new">Тема доски объявлений (новая)</option>
-        <option value="board_post_edit">Тема доски объявлений (редактирование)</option>
-        <option value="board_post_restore">Тема доски объявлений (восстановление)</option>
-        <option value="board_post_delete">Тема доски объявлений (удаление)</option>
-        <option value="market_comment_new">Комментарий в товаре (новый)</option>
-        <option value="market_comment_edit">Комментарий в товаре (редактирование)</option>
-        <option value="market_comment_restore">Комментарий в товаре (восстановление)</option>
-        <option value="market_comment_delete">Комментарий в товаре (удаление)</option>
-        <option value="market_order_new">Заказ в магазине (новый)</option>
-        <option value="market_order_edit">Заказ в магазине (редактирование)</option>
-        <option value="group_leave">Покидание пользователями группы</option>
-        <option value="group_join">Присоединение пользователей к группе</option>
-        <option value="user_block">Блокировка пользователя</option>
-        <option value="user_unblock">Разблокировка пользователя</option>
-        <option value="poll_vote_new">Новый голос в опросе</option>
-        <option value="group_officers_edit">Изменение руководства сообщества</option>
-        <option value="group_change_settings">Изменение настроек сообщества</option>
-        <option value="group_change_photo">Изменение фотографии сообщества</option>
-        <option value="vkpay_transaction">Транзакция VK Pay</option>
-        <option value="app_payload">Пользовательский платеж</option>
-        <option value="donut_subscription_create">Создание подписки в Donut</option>
-        <option value="donut_subscription_prolonged">Продление подписки в Donut</option>
-        <option value="donut_subscription_expired">Истечение срока действия подписки в Donut</option>
-        <option value="donut_subscription_cancelled">Отмена подписки в Donut</option>
-        <option value="donut_subscription_price_changed">Изменение стоимости подписки в Donut</option>
-        <option value="donut_money_withdraw">Списание средств из Donut</option>
-        <option value="donut_money_withdraw_error">Ошибка списания средств из Donut</option>
+        <option value="custom"><span data-i18n="label.events.custom"></span></option>
+        <option value="message_new"><span data-i18n="label.events.message_new"></span></option>
+        <option value="message_reply"><span data-i18n="label.events.message_reply"></span></option>
+        <option value="message_edit"><span data-i18n="label.events.message_edit"></span></option>
+        <option value="message_allow"><span data-i18n="label.events.message_allow"></span></option>
+        <option value="message_deny"><span data-i18n="label.events.message_deny"></span></option>
+        <option value="message_typing_state"><span data-i18n="label.events.message_typing_state"></span></option>
+        <option value="message_event"><span data-i18n="label.events.message_event"></span></option>
+        <option value="photo_new"><span data-i18n="label.events.photo_new"></span></option>
+        <option value="photo_comment_new"><span data-i18n="label.events.photo_comment_new"></span></option>
+        <option value="photo_comment_edit"><span data-i18n="label.events.photo_comment_edit"></span></option>
+        <option value="photo_comment_restore"><span data-i18n="label.events.photo_comment_restore"></span></option>
+        <option value="photo_comment_delete"><span data-i18n="label.events.photo_comment_delete"></span></option>
+        <option value="audio_new"><span data-i18n="label.events.audio_new"></span></option>
+        <option value="video_new"><span data-i18n="label.events.video_new"></span></option>
+        <option value="video_comment_new"><span data-i18n="label.events.video_comment_new"></span></option>
+        <option value="video_comment_edit"><span data-i18n="label.events.video_comment_edit"></span></option>
+        <option value="video_comment_restore"><span data-i18n="label.events.video_comment_restore"></span></option>
+        <option value="video_comment_delete"><span data-i18n="label.events.video_comment_delete"></span></option>
+        <option value="wall_post_new"><span data-i18n="label.events.wall_post_new"></span></option>
+        <option value="wall_repost"><span data-i18n="label.events.wall_repost"></span></option>
+        <option value="wall_reply_new"><span data-i18n="label.events.wall_reply_new"></span></option>
+        <option value="wall_reply_edit"><span data-i18n="label.events.wall_reply_edit"></span></option>
+        <option value="wall_reply_restore"><span data-i18n="label.events.wall_reply_restore"></span></option>
+        <option value="wall_reply_delete"><span data-i18n="label.events.wall_reply_delete"></span></option>
+        <option value="like_add"><span data-i18n="label.events.like_add"></span></option>
+        <option value="like_remove"><span data-i18n="label.events.like_remove"></span></option>
+        <option value="board_post_new"><span data-i18n="label.events.board_post_new"></span></option>
+        <option value="board_post_edit"><span data-i18n="label.events.board_post_edit"></span></option>
+        <option value="board_post_restore"><span data-i18n="label.events.board_post_restore"></span></option>
+        <option value="board_post_delete"><span data-i18n="label.events.board_post_delete"></span></option>
+        <option value="market_comment_new"><span data-i18n="label.events.market_comment_new"></span></option>
+        <option value="market_comment_edit"><span data-i18n="label.events.market_comment_edit"></span></option>
+        <option value="market_comment_restore"><span data-i18n="label.events.market_comment_restore"></span></option>
+        <option value="market_comment_delete"><span data-i18n="label.events.market_comment_delete"></span></option>
+        <option value="market_order_new"><span data-i18n="label.events.market_order_new"></span></option>
+        <option value="market_order_edit"><span data-i18n="label.events.market_order_edit"></span></option>
+        <option value="group_leave"><span data-i18n="label.events.group_leave"></span></option>
+        <option value="group_join"><span data-i18n="label.events.group_join"></span></option>
+        <option value="user_block"><span data-i18n="label.events.user_block"></span></option>
+        <option value="user_unblock"><span data-i18n="label.events.user_unblock"></span></option>
+        <option value="poll_vote_new"><span data-i18n="label.events.poll_vote_new"></span></option>
+        <option value="group_officers_edit"><span data-i18n="label.events.group_officers_edit"></span></option>
+        <option value="group_change_settings"><span data-i18n="label.events.group_change_settings"></span></option>
+        <option value="group_change_photo"><span data-i18n="label.events.group_change_photo"></span></option>
+        <option value="vkpay_transaction"><span data-i18n="label.events.vkpay_transaction"></span></option>
+        <option value="app_payload"><span data-i18n="label.events.app_payload"></span></option>
+        <option value="donut_subscription_create"><span data-i18n="label.events.donut_subscription_create"></span></option>
+        <option value="donut_subscription_prolonged"><span data-i18n="label.events.donut_subscription_prolonged"></span></option>
+        <option value="donut_subscription_expired"><span data-i18n="label.events.donut_subscription_expired"></span></option>
+        <option value="donut_subscription_cancelled"><span data-i18n="label.events.donut_subscription_cancelled"></span></option>
+        <option value="donut_subscription_price_changed"><span data-i18n="label.events.donut_subscription_price_changed"></span></option>
+        <option value="donut_money_withdraw"><span data-i18n="label.events.donut_money_withdraw"></span></option>
+        <option value="donut_money_withdraw_error"><span data-i18n="label.events.donut_money_withdraw_error"></span></option>
     </select>
     </div>
 
     <div class="form-row" id="node-input-custom-event-row" style="display: none;">
       <label for="node-input-custom-event">
-        <i class="fa fa-code"></i> Пользовательское событие
+        <i class="fa fa-code"></i> <span data-i18n="node-red:common.label.name"></span>
       </label>
-      <input type="text" id="node-input-custom-event" placeholder="Введите название событие">
+      <input type="text" id="node-input-custom-event" data-i18n="[placeholder]node-red:common.label.name">
     </div>
-  </script>
-
-<script type="text/html" data-help-name="vk-callback-event">
-    <a href="https://dev.vk.com/api/community-events/json-schema">https://dev.vk.com/api/community-events/json-schema</a>
   </script>

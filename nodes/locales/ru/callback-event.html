@@ -1,0 +1,12 @@
+<script type="text/html" data-help-name="vk-callback-event">
+    <p>Получает события извне и передает в выходные данные события, выбранные в конфигурации узла</p>
+
+    <h3>Детали</h3>
+        <p>Для получения запросов от серверов VK необходимо добавить узел "http in", также необходимо добавить "http response", от узла "http in" необходимо подключить поток к входу "callback-event"</p>
+        <p>Не забудьте подтвердить ваш сервер, для этого между узлами "http in" и "http response" необходимо добавить "template" с ответом для подтверждения и для постоянного ответа на входящие запросы.</p>
+
+    <h3>Ссылки</h3>
+        <ul>
+            <a href="https://dev.vk.com/api/community-events/json-schema">https://dev.vk.com/api/community-events/json-schema</a>
+        </ul>
+</script>

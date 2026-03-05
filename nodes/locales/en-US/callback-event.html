@@ -1,0 +1,12 @@
+<script type="text/html" data-help-name="vk-callback-event">
+    <p>Receives events from the outside and passes the events selected in the node configuration to the output</p>
+
+    <h3>Details</h3>
+        <p>To receive requests from VK servers, you need to add a node "http in", you also need to add "http response", from the node "http in" you need to add a thread to the input "callback-event"</p>
+        <p>Do not forget to confirm your server, for this, between the nodes "http in" and "http response" you need to add "template" with a response for confirmation and for a permanent response to incoming requests.</p>
+
+    <h3>References</h3>
+        <ul>
+            <a href="https://dev.vk.com/api/community-events/json-schema">https://dev.vk.com/api/community-events/json-schema</a>
+        </ul>
+</script>
