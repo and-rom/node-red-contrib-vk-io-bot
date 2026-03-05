@@ -1,0 +1,7 @@
+{
+    "label": {
+        "token": "Token",
+        "secret": "Secret (Callback)",
+        "api_version": "API version"
+    }
+}

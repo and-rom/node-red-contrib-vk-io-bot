@@ -1,0 +1,7 @@
+{
+    "label": {
+        "token": "Токен",
+        "secret": "Секретный ключ (Callback)",
+        "api_version": "Версия API"
+    }
+}
